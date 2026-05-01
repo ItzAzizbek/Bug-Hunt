@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from '../lib/firebase';
-import { doc, getDoc, collection, query, where, orderBy, onSnapshot } from 'firebase/firestore';
-import { signOut, onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc, collection, query, where, onSnapshot } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
 import {
   LayoutDashboard,
   Bug,
