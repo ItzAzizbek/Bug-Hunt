@@ -16,6 +16,7 @@ import {
   Bell,
   User,
   ChevronRight,
+  ShieldAlert,
 } from 'lucide-react';
 
 export default function Dashboard() {
@@ -173,6 +174,23 @@ export default function Dashboard() {
                 </button>
               );
             });
+          })()}
+
+          {/* Admin Link */}
+          {(() => {
+            const adminEmails = (import.meta.env.VITE_ADMIN_EMAILS || '').split(',').map((e: string) => e.trim().toLowerCase());
+            const userEmail = auth.currentUser?.email?.toLowerCase() || '';
+            if (adminEmails.includes(userEmail)) {
+              return (
+                <Link
+                  to="/admin"
+                  className="flex items-center gap-3 px-4 py-3 text-red-400 hover:text-white hover:bg-red-900/20 rounded-xl font-medium transition-colors mt-4"
+                >
+                  <ShieldAlert className="w-5 h-5" /> Админ-панель
+                </Link>
+              );
+            }
+            return null;
           })()}
         </nav>
 

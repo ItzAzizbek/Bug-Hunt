@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Mail, Lock, Eye, EyeOff, Loader2, User as UserIcon, Plus } from 'lucide-react';
 import { auth, db } from '../lib/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 interface RememberedAccount {
   email: string;
@@ -77,7 +77,13 @@ export default function Login() {
     setError(null);
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCred = await signInWithEmailAndPassword(auth, email, password);
+
+      // Update lastLogin in Firestore
+      await updateDoc(doc(db, 'users', userCred.user.uid), {
+        lastLogin: new Date().toISOString(),
+      });
+
       if (remember) {
         await saveAccount(email);
       }
@@ -250,7 +256,7 @@ export default function Login() {
                       Запомнить меня
                     </label>
                   </div>
-                  
+
                   {rememberedAccounts.length > 0 && (
                     <button
                       type="button"

@@ -8,6 +8,7 @@ import CreateProgram from './pages/CreateProgram';
 import ProgramDetail from './pages/ProgramDetail';
 import SubmitReport from './pages/SubmitReport';
 import ReportDetail from './pages/ReportDetail';
+import AdminPanel from './pages/AdminPanel';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/programs/:id" element={<ProgramDetail />} />
         <Route path="/programs/:id/report" element={<SubmitReport />} />
         <Route path="/reports/:id" element={<ReportDetail />} />
+        <Route path="/admin" element={<AdminPanel />} />
       </Routes>
     </Router>
   );
