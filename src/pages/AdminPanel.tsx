@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from '../lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import {
   ArrowLeft,
   Loader2,
@@ -11,7 +11,6 @@ import {
   Bug,
   DollarSign,
   TrendingUp,
-  Clock,
   ShieldAlert,
 } from 'lucide-react';
 
